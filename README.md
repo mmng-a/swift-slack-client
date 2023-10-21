@@ -8,7 +8,9 @@ import Vapor
 
 let app = Vapor.Application()
 defer { app.shutdown() }
+let token = "xoxp-xxxxxxxxxx-xxxxxxxxxx-xxxxxxxxxx"
 let slackClient = SlackClient(app.client, slackBotToken: token)
+try await slackClient.chatPostMessage(channel: channelID, text: "Hello, Slack app!")
 ```
 
 ## use app
@@ -21,5 +23,10 @@ func routes(_ routes: some Vapor.RoutesBuilder) throws {
   slackApp.onShortcut("new_application") { req, shortcut in
     try await ...
   }
+}
+
+// in configure.swift
+func configure(_ app: Application) throws {
+  try routes(app.routes)
 }
 ```
