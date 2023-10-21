@@ -15,9 +15,10 @@ try await slackClient.chatPostMessage(channel: channelID, text: "Hello, Slack ap
 
 ## use app
 
-write below in routes.swift created vapor default patern.
+when using vapor default pattern.
 
 ```swift
+// in routes.swift
 func routes(_ routes: some Vapor.RoutesBuilder) throws {
   let slackApp = SlackApp(routes)
   slackApp.onShortcut("new_application") { req, shortcut in
